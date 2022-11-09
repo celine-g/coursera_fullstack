@@ -1,0 +1,32 @@
+	html, body {
+		Width: 1920px;  											/* Set to your channel's resolution */
+		Height: 1080px;											/* Set to your channel's resolution */
+		Margin: 0;												/* Use all available space */
+		Padding: 0;												/* Use all available space */
+		Background: transparent;									/* The HTML consumer actually makes your background transparent by default, unless a color or image is specified - but this might be usefull when debugging in browsers */
+		Overflow: hidden;										/* Hide any overflowing elements - to disable scollbars */
+		-webkit-font-smoothing: antialiased !important;	 		/* Set aliasing of fonts - possible options: none, antialiased,  subpixel-antialiased */
+	}
+	@font-face {
+		font-family: PFBeauSansPro;
+		src: url('../fonts/pfbeausanspro-regular.ttf');
+		/*	src: url('../fonts/Poppins-Bold.ttf'); */
+	}
+	.container_bb {
+		position: fixed;
+		top: 845px;
+		left: 190px;
+		width: 1620px;
+		height: auto;
+	}	
+
+    .logo{
+       width: 200px; 
+        height: 200px;
+        opacity: 0;
+        background-image: url("../material/logo-gb-small.png"); 
+        background-repeat: no-repeat; 
+        position: absolute; 
+        left:0px; 
+        top: 0px; 
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/thema-2.css">
+	<script>
+		var data;
+
+		function play() {
+			function delayed() {
+
+				var firstElement = document.getElementById('firstid');
+				var secondElement = document.getElementById('secondid');
+
+				var width = 80;
+				var maxWidth = 1100; 
+				//set width of the lowerthird
+				if (secondElement.offsetWidth > firstElement.offsetWidth) {
+					width += secondElement.offsetWidth;
+
+				}
+				else {
+					width += firstElement.offsetWidth;	
+				}
+				
+			
+				if (width > maxWidth){
+					var newFontSize =30; 
+					while (secondElement.offsetWidth > maxWidth || firstElement.offsetWidth > maxWidth) {
+						console.log("set Fontsize")
+						newFontSize -= 3; 
+						if(secondElement.offsetWidth > maxWidth){
+							document.getElementById('secondid').style.fontSize = newFontSize + "px"; 
+						}
+						if(firstElement.offsetWidth > maxWidth){
+							document.getElementById('firstid').style.fontSize = newFontSize + "px";
+						}
+						//document.getElementsByClassName('box').style.fontSize = newFontSize + "px"; 
+						//console.log("offsetWidth" + secondElement.offsetWidth +"|"+firstElement.offsetWidth)
+					}
+					width= maxWidth; 
+				}
+				
+				document.getElementById('container_center').style.width = width + "px";
+				document.getElementById('bgfirst').style.width = width + "px";
+				//document.getElementById('bgsecond').style.width = width + "px";
+				// Start animating
+				var tl = new TimelineMax();
+				tl.to(".logo", 0.8, { css: { opacity: 1 } });
+				tl.to(".first_box", 0.6, { css: { height: "120px", opacity: 1 } }, 0.1);
+			
+
+			}
+			// 40ms delayed for css font load, otherwise the width of the boxes might be wrong
+			// if you have another solution let me know.
+			setTimeout(delayed, 40);
+		}
+		function next() {
+			var tl = new TimelineMax(); 
+		//	tl.to(".second_box", 0.6, { css: { height: "80px" } });
+
+		}
+		function stop() {
+			var tl = new TimelineMax();
+			// Animate bars off screen
+			tl.to(".container_bb", 0.5, { css: { opacity: 0 } });
+		}
+
+		function update(str) {
+			// Check if user input is empty
+			if (str == "" || str == "<templateData></templateData>") {
+				// Input empty, set example text
+				data = JSON.parse('{"f0":"Erste Info [f0]", "f1":"zweite Info [f1]"}');
+			} else {
+				try {
+					// Input JSON, parse to data variable
+					data = JSON.parse(str);
+				} catch (e) {
+					// Input not JSON, set example text
+					data = JSON.parse('{"f0":"[f0] Daten müssen JSON formatiert sein", "f1":"[f1]"}');
+				}
+			}
+			var first = document.getElementById('firstid');
+			// Check if name is set
+			if (first.innerHTML == "") {
+				// Set name from user input
+				first.innerHTML = data.f0;
+			} else {
+				// Name set before, update name
+				first.innerHTML = data.f0;
+				var firstElement = document.getElementById('firstid');
+				// Make sure the name fits on bar (scale to width)
+				TweenMax.to(".upper_second_box", 0.5, { css: { width: (width + 40) + "px" }, ease: Linear.easeNone });
+			}
+			var second = document.getElementById('secondid');
+			// Check if second is set
+			if (second.innerHTML == "") {
+				// Set second from user input
+				second.innerHTML = data.f1;
+			} else {
+				// second set before, update second
+				second.innerHTML = data.f1;
+				var secondElement = document.getElementById('secondid');
+
+			}
+		}
+		function debugUpdate() {
+			// Used only if debuging (see below)
+			document.body.style.backgroundColor = "#ccc";
+			update('{"f0":"StudienInfotag", "f1":"Medieninformatik Audiovisuelle Medien noch was"}');
+		}
+	</script>
+</head>
+
+<body>
+	<!-- DEBUG MODE UNCOMMENT FOR USE IN BROWSER -->
+
+	<div class="debug">
+		<button type="button" onclick="debugUpdate()">UPDATE</button>
+		<button type="button" onclick="play()">PLAY</button>
+		<button type="button" onclick="stop()">STOP</button>
+	</div>
+
+	<!-- DEBUG END --> 
+
+	<div class="container_bb">
+		<div class="logo" id="gbLogo"></div>
+		<div id="container_center">
+		<div class="background_box" id="bgBox">	
+		<div class="box first_box" id="bgfirst">
+			<div class="first" id="firstid"></div>
+			<div class="second" id="secondid"></div>
+		</div>
+	</div>
+	</div>
+	</div>
+	<script src="js/TweenMax.js"></script>
+	<script src="js/TimelineMax.js"></script>
+	<script src="js/CSSPlugin.js"></script>
+</body>
+
+</html>

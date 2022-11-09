@@ -1,0 +1,51 @@
+#container_center{
+    margin-left: auto; 
+    margin-right: auto;
+    overflow: hidden;
+
+  }
+.first_box {
+    background-color: #F5F5F5;
+    z-index: 10;
+    opacity: 0;
+}
+
+.first {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-top: 20px;  
+    color:rgb(229, 20, 51);;
+    z-index: 15;
+    font-weight: 300; 
+}
+.second_box {
+    background-color: 	#6192b5; 
+     z-index: 20; 
+}
+@font-face {
+	font-family: Frutiger-Bold;
+	src: url('../fonts/HdMFrutigerNextPro-Bold.otf');
+}
+
+@font-face {
+	font-family: Frutiger-Light;
+	src: url('../fonts/HdMFrutigerNextPro-Light.otf');
+}
+.box {
+    
+    position: fixed;
+    height: 0px;   
+    overflow: hidden;
+    transform-origin: center middle;
+    text-align: center;  
+    font-family: Frutiger-Bold;
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 0px;
+
+}
+.second {
+    margin-top: 10px;  
+   color:rgb(229, 20, 51); 
+   font-family: Frutiger-Light;
+}
